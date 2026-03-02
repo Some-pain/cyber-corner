@@ -1,0 +1,121 @@
+You are working on my existing  System
+Goal:
+Implement the following improvements cleanly and professionally without breaking existing features.
+
+-----------------------------------
+1️⃣ FOOTER FIX – SERVICES CLICKABLE
+-----------------------------------
+
+- In the Footer component:
+  - Make each service clickable.
+  - When clicked, it should navigate to /request page.
+  - Pre-select the service type in the RequestForm automatically using URL query params.
+
+Example:
+Clicking "PAN Card Service" should navigate to:
+  /request?service=pan
+
+In RequestForm:
+- Read query param using useSearchParams.
+- Automatically set serviceType field from URL.
+- Ensure it works on mobile.
+
+-----------------------------------
+2️⃣ ADMIN CAN UPLOAD IMAGE FOR NOTICE
+-----------------------------------
+
+Upgrade Notice system:
+
+Backend:
+- Install multer for file upload.
+- Create /uploads folder.
+- Add static file serving: app.use("/uploads", express.static("uploads"))
+
+Update Notice schema:
+- Add imageUrl column (nullable string).
+
+Modify POST /api/admin/notices:
+- Accept multipart/form-data.
+- Store uploaded image in /uploads.
+- Save image path in database.
+- Return full notice object.
+
+Frontend (Admin Notices page):
+- Add file input for image.
+- Use FormData to send title, content, image.
+- Show image preview before upload.
+- Show image in admin notice list.
+
+Public NoticeBoard:
+- If imageUrl exists, display image above content.
+- Make image responsive.
+- Use lazy loading for performance.
+
+-----------------------------------
+3️⃣ PERFORMANCE OPTIMIZATION
+-----------------------------------
+
+Frontend:
+- Use React.lazy for admin pages (code splitting).
+- Memoize heavy components.
+- Use proper query caching in TanStack Query.
+- Enable staleTime for notices.
+- Add loading skeleton instead of simple "Loading".
+
+Backend:
+- Add basic request rate limiting.
+- Add compression middleware.
+- Ensure proper indexing on notices.createdAt.
+- Avoid unnecessary database selects.
+- Return only needed fields.
+
+-----------------------------------
+4️⃣ MOBILE NAVIGATION IMPROVEMENT
+-----------------------------------
+
+Improve 3-dot mobile navigation:
+- Add smooth open/close animation.
+- Close when clicking outside.
+- Close on route change.
+- Add subtle shadow and backdrop blur.
+
+-----------------------------------
+5️⃣ FOOTER PROFESSIONAL UPGRADE
+-----------------------------------
+
+Footer must include:
+- Services section (clickable)
+- Quick Links
+- Contact info
+- Copyright
+- Mobile responsive layout
+
+Use grid layout.
+Make it modern.
+
+-----------------------------------
+6️⃣ SECURITY IMPROVEMENT
+-----------------------------------
+
+- Validate file type (images only).
+- Limit image size (2MB).
+- Sanitize input.
+- Protect admin routes with middleware.
+
+-----------------------------------
+7️⃣ CLEAN CODE REQUIREMENT
+-----------------------------------
+
+- Do not duplicate logic.
+- Use reusable hooks.
+- Follow current project folder structure.
+- Keep TypeScript types correct.
+
+-----------------------------------
+Final Result:
+- Footer service links working
+- Admin can upload notice images
+- Public notice board shows images
+- Faster performance
+- Mobile optimized
+- Production ready structure
